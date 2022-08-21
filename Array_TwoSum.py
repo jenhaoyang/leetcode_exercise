@@ -2,11 +2,15 @@ from typing import List
 
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        finding_num_dict = {}
         for index1, num1 in enumerate(nums):
-            for index2, num2 in enumerate(nums):
-                if index1 != index2:
-                    if num1 + num2 == target:
-                        return [index1, index2]
+            finding_num_dict[target - num1] = index1
+        
+        for index2, num2 in enumerate(nums):
+            if finding_num_dict.get(num2) != None:
+                if finding_num_dict.get(num2) != index2:
+                    return [finding_num_dict.get(num2), index2]
+
 
 sol = Solution()
 
